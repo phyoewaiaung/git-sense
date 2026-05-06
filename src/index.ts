@@ -4,7 +4,7 @@ import "dotenv/config";
 
 import { Command } from "commander";
 import inquirer from "inquirer";
-import simpleGit from "simple-git";
+import { simpleGit } from "simple-git";
 
 import { getStagedDiff } from "./git.js";
 import { generateCommitMessage } from "./ai.js";
@@ -16,7 +16,7 @@ const program = new Command();
 program
     .name("aic")
     .description("AI-powered git commit generator")
-    .version("0.0.1");
+    .version("1.0.5");
 
 program
     .command("commit")

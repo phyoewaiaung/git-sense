@@ -1,15 +1,27 @@
 {
   "name": "@phyoe/git-sense",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "1.0.5",
+  "description": "AI-powered git commit generator",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "gs": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
   "scripts": {
     "dev": "tsx src/index.ts commit",
-    "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "git",
+    "ai",
+    "commit",
+    "cli"
+  ],
+  "author": "phyoe",
   "license": "ISC",
   "dependencies": {
     "chalk": "^5.6.2",
