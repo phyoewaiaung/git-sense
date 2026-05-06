@@ -2,7 +2,7 @@ import OpenAI from "openai";
 
 export async function generateCommitMessage(diff: string) {
     const client = new OpenAI({
-        apiKey: "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",
+        apiKey: process.env.GROQ_API_KEY,
         baseURL: "https://api.groq.com/openai/v1",
     });
 
