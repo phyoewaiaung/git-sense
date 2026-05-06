@@ -16,7 +16,7 @@ const program = new Command();
 program
     .name("aic")
     .description("AI-powered git commit generator")
-    .version("1.0.5");
+    .version("1.0.6");
 
 program
     .command("commit")

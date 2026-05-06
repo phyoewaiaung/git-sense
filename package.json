@@ -1,6 +1,6 @@
 {
   "name": "@phyoe/git-sense",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "AI-powered git commit generator",
   "type": "module",
   "main": "dist/index.js",
