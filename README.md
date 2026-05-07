@@ -20,17 +20,24 @@ npm install -g gitsense-cli
 
 ## Usage
 
-One command. That's it.
+Run the commit generator:
 
 ```bash
 # 1. Stage your changes
 git add .
 
-# 2. Let AI write your commit message
+# 2. Let AI write your commit
 gs commit
 ```
 
-*Note: `gs` is the default command that triggers the commit generator immediately.*
+*Note: You can run `gs` alone to see available commands and a brief introduction.*
+
+### Options
+
+```bash
+# Generate commit message without Gitmoji icons
+gs commit --no-icon
+```
 
 ## Features
 

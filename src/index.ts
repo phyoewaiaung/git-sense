@@ -19,12 +19,21 @@ program
     .description("AI-powered Git commit message generator using Llama and GPT models")
     .version("1.0.10")
     .action(() => {
-        program.help();
+        console.log(chalk.bold.cyan("\n🚀 Welcome to GitSense CLI!" + " Version(" + program.version() + ")"));
+        console.log(chalk.dim("The intelligent, zero-config Git assistant.\n"));
+        console.log(`GitSense traces your staged changes and uses AI to generate`);
+        console.log(`meaningful, conventional commit messages instantly.\n`);
+
+        console.log(chalk.bold("Available Commands:"));
+        console.log(`  ${chalk.cyan("gs commit")}    Analyze changes and generate a commit message`);
+        console.log(`  ${chalk.cyan("gs --help")}    Show all options and help information\n`);
+
+        console.log(chalk.dim("Tip: Run 'gs commit' to get started with your first AI commit!\n"));
     });
 
 program
-    .command("commit", { isDefault: true })
-    .description("Generate AI commit message (default)")
+    .command("commit")
+    .description("Generate AI commit message")
     .action(async () => {
         const diff = await getStagedDiff();
 
