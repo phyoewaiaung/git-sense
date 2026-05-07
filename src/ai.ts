@@ -36,7 +36,8 @@ export async function generateCommitMessage(diff: string) {
                 model: configuredModel || (configuredKey.startsWith("gsk_") ? "llama-3.1-8b-instant" : "gpt-4o-mini"),
                 messages: getMessages(diff)
             });
-            return response.choices[0]?.message?.content?.trim();
+            const content = response.choices[0]?.message?.content?.trim() || "";
+            return content.split('\n')[0].trim().replace(/^"|"$/g, '');
         } catch (e) {
             console.error("❌ Custom AI Config Error:", (e as any).message);
             process.exit(1);
@@ -58,7 +59,9 @@ export async function generateCommitMessage(diff: string) {
                 });
 
                 if (response.choices?.[0]?.message?.content) {
-                    return response.choices[0].message.content.trim();
+                    const content = response.choices[0].message.content.trim();
+                    // Safety: if AI returns multiple lines or options, only take the first one
+                    return content.split('\n')[0].trim().replace(/^"|"$/g, '');
                 }
             } catch (error: any) {
                 // If 429 (Rate Limit) or 401 (Unauthorized), try next model/provider
@@ -88,7 +91,9 @@ Rules:
 - Use conventional commits
 - Add appropriate Gitmoji at the beginning
 - Maximum 72 characters
-- Return ONLY the commit message
+- Return ONLY exactly one commit message
+- Do NOT provide multiple options, "or", or explanations
+- Do NOT use backticks or code blocks
 
 Examples:
 ✨ feat(auth): add Google OAuth login

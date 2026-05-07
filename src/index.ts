@@ -41,7 +41,7 @@ program
 
             console.log("Suggested commit:\n");
             console.log(suggestion);
-            console.log("");
+            console.log("\n(yes/enter to commit, retry to regenerate, no to cancel)\n");
 
             const { action } = await inquirer.prompt([
                 {
@@ -49,7 +49,7 @@ program
                     name: "action",
                     message: "What would you like to do?",
                     choices: [
-                        { name: "✅ Yes", value: "yes" },
+                        { name: "✅ Yes (Enter)", value: "yes" },
                         { name: "🔄 Retry", value: "retry" },
                         { name: "❌ No", value: "no" },
                     ],
