@@ -18,37 +18,53 @@
 npm install -g gitsense-cli
 ```
 
-## Usage
+## Available Commands
 
-Run the commit generator:
-
+### 1. Introduction & Help
+See what GitSense can do and view available commands.
 ```bash
-# 1. Stage your changes
+gs
+```
+Or for technical help:
+```bash
+gs --help
+```
+
+### 2. Generate Commit Message (Default)
+The primary command to analyze your staged changes and suggest a commit message.
+```bash
+# First, stage your changes
 git add .
 
-# 2. Let AI write your commit
+# Then, run the generator
 gs commit
 ```
+## Interactive Workflow
 
-*Note: You can run `gs` alone to see available commands and a brief introduction.*
+When you run `gs commit`, you'll enter an interactive session:
+- **✅ y / enter**: Accept the suggestion and create the commit.
+- **🔄 r / retry**: Regenerate a new suggestion if you're not satisfied.
+- **❌ n / no**: Cancel the operation.
 
-### Options
+## Configuration (Optional)
+
+If you want to use your own API key to avoid shared rate limits:
 
 ```bash
-# Generate commit message without Gitmoji icons
-gs commit --no-icon
+# Set your key via environment variable
+export AI_API_KEY=your_key_here
 ```
 
-## Features
-
-- 🤖 **Multi-Model Intelligence**: Powered by Llama 3.1 and GPT-4o mini via resilient failover providers.
-- 🎨 **Gitmoji Support**: Makes your commit history readable and beautiful.
-- 🔒 **Privacy Focused**: Only your staged diff is sent to the AI to generate the message.
-- ⚙️ **Advanced Options**: Want to use your own Groq or OpenAI key? Just set `AI_API_KEY` in your environment.
+Or use a `.env` file:
+```env
+AI_API_KEY=your_key_here
+AI_BASE_URL=https://api.groq.com/openai/v1 # Optional
+AI_MODEL=llama-3.1-8b-instant # Optional
+```
 
 ## Support
 
-If you have feedback or need a custom implementation, feel free to reach out:
+If you have feedback or need assistance:
 ✉️ **phyowaiaung.pxyo@gmail.com**
 
 ## License
