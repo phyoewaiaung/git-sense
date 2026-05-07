@@ -17,7 +17,7 @@ const program = new Command();
 program
     .name("gs")
     .description("AI-powered Git commit message generator using Llama and GPT models")
-    .version("1.0.10")
+    .version("1.0.2")
     .action(() => {
         console.log(chalk.bold.cyan("\n🚀 Welcome to GitSense CLI!" + " Version(" + program.version() + ")"));
         console.log(chalk.dim("The intelligent, zero-config Git assistant.\n"));
