@@ -16,7 +16,7 @@ const program = new Command();
 program
     .name("gs")
     .description("AI-powered Git commit message generator using Llama and GPT models")
-    .version("1.0.7")
+    .version("1.0.8")
     .action(() => {
         program.help();
     });
