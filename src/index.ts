@@ -14,9 +14,9 @@ const git = simpleGit();
 const program = new Command();
 
 program
-    .name("aic")
+    .name("gs")
     .description("AI-powered git commit generator")
-    .version("1.0.6");
+    .version("1.0.7");
 
 program
     .command("commit")

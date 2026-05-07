@@ -1,18 +1,18 @@
-# git-sense
+# gitsense-cli
 
 AI-powered git commit generator.
 
 ## Install
 
 ```bash
-npm install -g git-sense
+npm install -g gitsense-cli
 ```
 
 ## Usage
 
 ```bash
 git add .
-git-sense commit
+gs commit
 ```
 
 ## Features
