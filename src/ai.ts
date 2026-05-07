@@ -70,9 +70,9 @@ export async function generateCommitMessage(diff: string) {
     }
 
     console.error("\n❌ AI Service Error: All free providers are currently busy or unavailable.");
-    console.error("💡 To fix this, you can set your own FREE API key in a .env file.");
-    console.error("   1. Get a FREE key from Groq: https://console.groq.com/keys");
-    console.error("   2. Add to .env: AI_API_KEY=your_key_here");
+    // console.error("💡 To fix this, you can set your own FREE API key in a .env file.");
+    // console.error("   1. Get a FREE key from Groq: https://console.groq.com/keys");
+    // console.error("   2. Add to .env: AI_API_KEY=your_key_here");
     console.error("\n✉️  Need help? Contact: phyowaiaung.pxyo@gmail.com");
     process.exit(1);
 }
