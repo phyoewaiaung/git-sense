@@ -15,12 +15,15 @@ const program = new Command();
 
 program
     .name("gs")
-    .description("AI-powered git commit generator")
-    .version("1.0.7");
+    .description("AI-powered Git commit message generator using Llama and GPT models")
+    .version("1.0.7")
+    .action(() => {
+        program.help();
+    });
 
 program
-    .command("commit")
-    .description("Generate AI commit message")
+    .command("commit", { isDefault: true })
+    .description("Generate AI commit message (default)")
     .action(async () => {
         const diff = await getStagedDiff();
 

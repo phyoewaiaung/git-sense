@@ -1,28 +1,33 @@
 {
   "name": "gitsense-cli",
   "version": "1.0.7",
-  "description": "AI-powered git commit generator",
-  "type": "module",
+  "description": "AI-powered Git commit message generator using Llama and GPT models",
   "main": "dist/index.js",
+  "type": "module",
   "bin": {
-    "gs": "./dist/index.js"
+    "gs": "dist/index.js"
   },
   "files": [
     "dist",
     "README.md"
   ],
   "scripts": {
-    "dev": "tsx src/index.ts commit",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build"
   },
   "keywords": [
     "git",
     "ai",
     "commit",
+    "generator",
+    "llama",
+    "openai",
     "cli"
   ],
-  "author": "phyoe",
-  "license": "ISC",
+  "author": "Phyo Wai Aung <phyowaiaung.pxyo@gmail.com>",
+  "license": "MIT",
   "dependencies": {
     "@heyputer/puter.js": "^2.3.2",
     "chalk": "^5.6.2",
