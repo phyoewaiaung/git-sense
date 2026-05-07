@@ -16,7 +16,7 @@ const program = new Command();
 program
     .name("gs")
     .description("AI-powered Git commit message generator using Llama and GPT models")
-    .version("1.0.8")
+    .version("1.0.9")
     .action(() => {
         program.help();
     });
@@ -32,29 +32,43 @@ program
             process.exit(0);
         }
 
-        console.log("Analyzing staged changes...\n");
+        let confirmed = false;
+        let suggestion = "";
 
-        const suggestion = await generateCommitMessage(diff);
+        while (!confirmed) {
+            console.log("Analyzing staged changes...\n");
+            suggestion = (await generateCommitMessage(diff)) || "";
 
-        console.log("Suggested commit:\n");
-        console.log(suggestion);
-        console.log("");
+            console.log("Suggested commit:\n");
+            console.log(suggestion);
+            console.log("");
 
-        const { confirm } = await inquirer.prompt([
-            {
-                type: "confirm",
-                name: "confirm",
-                message: "Commit with this message?",
-            },
-        ]);
+            const { action } = await inquirer.prompt([
+                {
+                    type: "list",
+                    name: "action",
+                    message: "What would you like to do?",
+                    choices: [
+                        { name: "✅ Yes", value: "yes" },
+                        { name: "🔄 Retry", value: "retry" },
+                        { name: "❌ No", value: "no" },
+                    ],
+                    default: "yes",
+                },
+            ]);
 
-        if (!confirm) {
-            console.log("Cancelled.");
-            process.exit(0);
+            if (action === "yes") {
+                confirmed = true;
+            } else if (action === "retry") {
+                console.log("\nRegenerating...\n");
+                continue;
+            } else {
+                console.log("Cancelled.");
+                process.exit(0);
+            }
         }
 
-        await git.commit(suggestion!);
-
+        await git.commit(suggestion);
         console.log("Commit created successfully.");
     });
 
