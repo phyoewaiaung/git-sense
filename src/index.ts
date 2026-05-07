@@ -5,6 +5,7 @@ import "dotenv/config";
 import { Command } from "commander";
 import inquirer from "inquirer";
 import { simpleGit } from "simple-git";
+import chalk from "chalk";
 
 import { getStagedDiff } from "./git.js";
 import { generateCommitMessage } from "./ai.js";
@@ -40,26 +41,34 @@ program
             suggestion = (await generateCommitMessage(diff)) || "";
 
             console.log("Suggested commit:\n");
-            console.log(suggestion);
-            console.log("\n(yes/enter to commit, retry to regenerate, no to cancel)\n");
+            console.log(chalk.bold.green(suggestion));
+            console.log(
+                `\n(${chalk.bold.cyan("y")}/${chalk.bold.cyan("enter")} to commit, ` +
+                `${chalk.bold.yellow("r")} to retry, ` +
+                `${chalk.bold.red("n")} to cancel)\n`
+            );
 
             const { action } = await inquirer.prompt([
                 {
-                    type: "list",
+                    type: "input",
                     name: "action",
                     message: "What would you like to do?",
-                    choices: [
-                        { name: "✅ Yes (Enter)", value: "yes" },
-                        { name: "🔄 Retry", value: "retry" },
-                        { name: "❌ No", value: "no" },
-                    ],
-                    default: "yes",
+                    default: "y",
+                    validate: (input: string) => {
+                        const val = input.toLowerCase().trim();
+                        if (!val || ["y", "yes", "r", "retry", "n", "no"].includes(val)) {
+                            return true;
+                        }
+                        return "Please enter y, r, or n";
+                    },
                 },
             ]);
 
-            if (action === "yes") {
+            const normalizedAction = action.toLowerCase().trim() || "y";
+
+            if (normalizedAction === "y" || normalizedAction === "yes") {
                 confirmed = true;
-            } else if (action === "retry") {
+            } else if (normalizedAction === "r" || normalizedAction === "retry") {
                 console.log("\nRegenerating...\n");
                 continue;
             } else {
