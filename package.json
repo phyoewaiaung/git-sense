@@ -1,6 +1,6 @@
 {
   "name": "gitsense-cli",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "AI-powered Git commit message generator using Llama and GPT models",
   "main": "dist/index.js",
   "type": "module",
@@ -19,12 +19,17 @@
   },
   "keywords": [
     "git",
-    "ai",
-    "commit",
-    "generator",
-    "llama",
+    "git-commit",
+    "commit-message",
+    "commit-generator",
+    "ai-commit",
+    "git-ai",
+    "github",
+    "developer-tools",
+    "terminal",
+    "cli",
     "openai",
-    "cli"
+    "llama"
   ],
   "author": "Phyo Wai Aung <phyowaiaung.pxyo@gmail.com>",
   "license": "MIT",
